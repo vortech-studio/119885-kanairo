@@ -9,7 +9,7 @@ class CarOwnerAdmin(admin.ModelAdmin):
         CarInline,
     ]
 
-# Added this section
+# Add multiple images for a vehicle
 # # # # # # # # # # # # # # # # # # # # # 
 class CarImageInline(admin.StackedInline):
     model = CarImage
