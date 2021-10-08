@@ -11,15 +11,19 @@ class CarOwnerAdmin(admin.ModelAdmin):
 
 # Add multiple images for a vehicle
 # # # # # # # # # # # # # # # # # # # # # 
-class CarImageInline(admin.StackedInline):
+class CarImageAdmin(admin.StackedInline):
     model = CarImage
  
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    inlines = [CarImageInline]
+    inlines = [CarImageAdmin]
  
     class Meta:
        model = Car
+
+@admin.register(CarImage)
+class CarImageAdmin(admin.ModelAdmin):
+    pass
 # # # # # # # # # # # # # # # # # # # # # 
  
 

@@ -50,14 +50,13 @@ class CarModel(models.Model):
 #Forth model
 class Car(models.Model):
     """Model that represents a car"""
-    registration = models.CharField('Reg No.', max_length = 7, unique = True)
-    car_owner = models.ForeignKey(CarOwner, on_delete=models.RESTRICT, null=True)
+    registration = models.CharField('Reg No.', max_length = 8, unique = True)
+    car_owner = models.ForeignKey(CarOwner, on_delete=models.RESTRICT, null=True, blank=True,)
     car_type = models.ForeignKey(CarType, on_delete = models.RESTRICT)
     car_make = models.ForeignKey(CarMake, on_delete = models.RESTRICT)
     car_model = models.ForeignKey(CarModel, on_delete = models.RESTRICT)
-    description = models.TextField(max_length = 1000, help_text = "Some additional info about the car")
-    # Added this field
-    image = models.FileField(blank=True, editable=False)
+    description = models.TextField(max_length = 1000, help_text = "Some additional info about the car")    
+    image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return  (f'{self.car_make} {self.car_model} {self.registration}')
@@ -72,7 +71,7 @@ class CarImage(models.Model):
     # ForeignKey field refering to the Car class
     car = models.ForeignKey(Car, default=None, on_delete=models.RESTRICT)
     # Field for uploading multiple images
-    images = models.FileField(upload_to = 'images/')
+    image = models.ImageField(upload_to = 'images/')
  
     def __str__(self):
         return  (f'{self.car.car_make} {self.car.car_model} {self.car.registration}')

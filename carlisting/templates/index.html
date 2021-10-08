@@ -1,9 +1,129 @@
 {% extends "base_template.html" %} {% block content %}
-<div>
-  <div class="row">
-    <div class="col">
-      <h1>Kanairo Car Hire</h1>
-    </div>
+
+<div
+  class="row d-lg-flex justify-content-sm-end align-items-sm-center"
+  style="
+    background: url('../static/images/hero-image.jpg') top / cover no-repeat;
+    min-height: 600px;
+  "
+>
+  <div class="col"></div>
+  <div class="col text-center">
+    <img
+      src="../static/images/kanairo-logo.png"
+      style="width: 96px; height: 96px; margin: 16px"
+    />
+    <h2 style="color: white">Unbeatable Price.</h2>
+    <h2 style="color: white">Rent-A-Car Service.</h2>
+    <h5 style="color: white">
+      Find a car in minutes, Choose from {{num_cars_available}} cars available
+    </h5>
   </div>
 </div>
+<div
+  class="row"
+  style="
+    margin-right: 128px;
+    margin-left: 128px;
+    margin-top: 64px;
+    margin-bottom: 32px;
+  "
+>
+  <div class="col">
+    <h5>Browse car models</h5>
+    <h2>Find great deals from our selection</h2>
+  </div>
+</div>
+<div
+  class="row"
+  style="margin-right: 128px; margin-left: 128px; margin-top: 32px"
+>
+  {% for car in cars %}
+  <div class="col-sm-4 d-flex align-items-stretch" style="margin-bottom: 32px">
+    <div class="card shadow">
+      <!-- Carousel wrapper -->
+      <div
+        id="carouselBasicExample-{{forloop.counter0}}"
+        class="carousel slide carousel-fade"
+        data-mdb-ride="carousel"
+      >
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-mdb-target="#carouselBasicExample-{{forloop.counter0}}"
+            data-mdb-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-mdb-target="#carouselBasicExample-{{forloop.counter0}}"
+            data-mdb-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-mdb-target="#carouselBasicExample-{{forloop.counter0}}"
+            data-mdb-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            <img src="{{car.images.0}}" class="d-block w-100" alt="..." />
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="{{car.images.1}}" class="d-block w-100" alt="..." />
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="{{car.images.2}}" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <!-- Inner -->
+
+        <!-- Controls -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-mdb-target="#carouselBasicExample-{{forloop.counter0}}"
+          data-mdb-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-mdb-target="#carouselBasicExample-{{forloop.counter0}}"
+          data-mdb-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Carousel wrapper -->
+      <div class="card-body">
+        <h4 class="card-title">{{car.model}}</h4>
+        <h6 class="text-muted card-subtitle mb-2">Make:&nbsp;{{car.make}}</h6>
+        <h6 class="text-muted card-subtitle mb-2">Type:&nbsp;{{car.type}}</h6>
+        <h6 class="text-muted card-subtitle mb-2">
+          Registration:&nbsp;{{car.registration}}
+        </h6>
+        <h6 class="text-muted card-subtitle mb-2">Description:&nbsp;</h6>
+        <p class="card-text">{{car.description}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
 {% endblock %}
